@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MedGenVidQA 2026</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+   
+
+<style>
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0;
+    background: #f7f9fc;
+    color: #1f2937;
+    line-height: 1.7;
+}
+
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e5e7eb;
+    padding: 14px 60px;
+}
+
+nav a {
+    margin-left: 22px;
+    text-decoration: none;
+    font-weight: 500;
+    color: #1f2937;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+nav a:hover {
+    color: #2563eb;
+    opacity: 0.85;
+}
+
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.85);
+    padding: 28px 46px;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.centered h1 {
+    margin: 6px 0;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 60px 40px;
+}
+
+section {
+    margin-bottom: 70px;
+}
+
+
+h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #374151;
+}
+
+
+p, li {
+    font-size: 16px;
+}
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+
+ul {
+    padding-left: 22px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+
+.tg-wrap {
+    background: white;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+table.tg {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+table.tg th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+table.tg th,
+table.tg td {
+    border: none;
+    padding: 14px 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+table.tg tr:hover td {
+    background: #f8fafc;
+}
+
+#ref1, #ref2, #ref3, #ref4, #ref5, #ref6 {
+    background: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+}
+
+
+footer {
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    padding: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+
+
+
+.site-nav{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.site-nav .nav-inner{
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.site-nav .nav-link{
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 600;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.site-nav .nav-link:hover{
+  background: rgba(37,99,235,0.08);
+  color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.site-nav .nav-link:focus-visible{
+  outline: 3px solid rgba(37,99,235,0.35);
+  outline-offset: 2px;
+}
+.hero-clean{
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #111827 55%,
+    #1e293b 100%
+  );
+  color: #ffffff;
+}
+
+.hero-clean__inner{
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 110px 24px 90px;
+}
+
+.hero-clean__text{
+  max-width: 1100px;
+}
+
+
+.hero-clean__kicker{
+  margin: 0 0 22px;
+  font-weight: 800;
+  font-size: clamp(34px, 4.2vw, 52px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #f9fafb;
+}
+
+
+.hero-clean__title{
+  margin: 0;
+  font-weight: 900;
+  font-size: clamp(36px, 4vw, 56px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.hero-clean__text{ text-align: center; margin: 0 auto; }
+
+
+
+.section-intro{
+  margin-top: 64px;
+}
+
+.intro-content{
+  max-width: 1060px;       
+  margin-top: 28px;
+}
+
+
+.section-intro p{
+  font-size: 18px;
+  line-height: 1.85;
+  color: #1f2937;
+}
+
+
+.section-intro a{
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.section-intro a:hover{
+  text-decoration: underline;
+}
+
+
+.section-news{
+  margin-top: 48px;
+}
+
+.news-list{
+  list-style: none;
+  padding: 0;
+  margin: 26px 0 0;
+  max-width: 1060px;
+  display: grid;
+  gap: 12px;
+}
+
+.news-list li{
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+  line-height: 1.6;
+}
+
+
+.section-dates{
+  margin-bottom: 64px;
+}
+
+
+.dates-card{
+  margin-top: 26px;
+    max-width: 1060px; 
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+
+.tg-wrap{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+}
+
+
+table.tg{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 820px;  /* keeps columns readable; scrolls on mobile */
+  font-size: 18px;
+}
+
+
+table.tg thead th{
+  position: sticky; /* optional: stays visible when scrolling inside wrapper */
+  top: 0;
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 800;
+  text-align: left;
+  padding: 14px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+
+table.tg td{
+  padding: 14px 14px;
+  border-bottom: 1px solid #eef2f7;
+  color: #111827;
+  white-space: nowrap;
+}
+
+
+table.tg td:first-child,
+table.tg th:first-child{
+  font-weight: 800;
+  color: #0f172a;
+}
+
+
+table.tg tbody tr:nth-child(odd) td{
+  background: #ffffff;
+}
+table.tg tbody tr:nth-child(even) td{
+  background: #fbfdff;
+}
+table.tg tbody tr:hover td{
+  background: #f1f5f9;
+}
+
+
+table.tg thead th:first-child{ border-top-left-radius: 12px; }
+table.tg thead th:last-child{ border-top-right-radius: 12px; }
+
+
+.dates-note{
+  margin: 14px 2px 2px;
+  color: #374151;
+  line-height: 1.7;
+  font-size: 16px;
+}
+.dates-note a{
+  font-weight: 700;
+  text-decoration: none;
+}
+.dates-note a:hover{
+  text-decoration: underline;
+}
+.section-registration{
+  margin-bottom: 64px;
+}
+
+
+.info-card{
+  margin-top: 18px;
+  margin-bottom: 34px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px 18px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  max-width: 1060px;
+}
+
+
+.info-list{
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.75;
+}
+
+.info-list li{
+  margin: 10px 0;
+  color: #111827;
+}
+
+
+.section-registration a{
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.section-registration a:hover{
+  text-decoration: underline;
+}
+
+
+
+.section-tasks{
+  margin-bottom: 64px;
+}
+
+.task-tabs{
+  margin-top: 26px;
+  max-width: 1090px;
+}
+
+
+.task-tabs input{
+  display: none;
+}
+
+
+.task-tab-labels{
+  display: flex;
+  gap: 6px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.task-tab-labels label{
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 800;
+  border-radius: 12px 12px 0 0;
+  color: #374151;
+  background: #f8fafc;
+}
+
+.task-tab-labels label:hover{
+  background: #eef2f7;
+}
+
+
+#tab-a:checked ~ .task-tab-labels label[for="tab-a"],
+#tab-b:checked ~ .task-tab-labels label[for="tab-b"],
+#tab-c:checked ~ .task-tab-labels label[for="tab-c"]{
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e5e7eb;
+  border-bottom: none;
+}
+
+
+.task-tab-panels{
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  padding: 22px;
+}
+
+
+.task-panel{
+  display: none;
+}
+
+
+#tab-a:checked ~ .task-tab-panels .task-panel:nth-child(1),
+#tab-b:checked ~ .task-tab-panels .task-panel:nth-child(2),
+#tab-c:checked ~ .task-tab-panels .task-panel:nth-child(3){
+  display: block;
+}
+
+
+.task-panel h3{
+  margin-top: 0;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.task-panel h4{
+  margin-top: 18px;
+  font-weight: 800;
+}
+
+.task-panel h5{
+  margin-top: 14px;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.task-panel p{
+  line-height: 1.75;
+}
+
+
+.btn-link{
+  display: inline-block;
+  margin-top: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  color: #1d4ed8;
+  font-weight: 800;
+  text-decoration: none;
+}
+.section-organizers{
+  margin-bottom: 64px;
+}
+
+.organizers-grid{
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  max-width: 600px;
+}
+
+
+.organizer-card{
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 22px 18px;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: #111827;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.organizer-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.10);
+}
+
+
+.organizer-card .headshot{
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 3px solid #f1f5f9;
+}
+
+
+.organizer-card .name{
+  display: block;
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 4px;
+  color: #0f172a;
+}
+
+
+.organizer-card .affiliation{
+  font-size: 14px;
+  color: #6b7280;
+}
+
+
+.organizer-card:focus-visible{
+  outline: 3px solid rgba(37,99,235,0.35);
+  outline-offset: 3px;
+}
+.section-references{
+  margin-bottom: 64px;
+}
+
+
+.reference-list{
+  margin-top: 26px;
+  max-width: 1060px;
+  padding-left: 22px;
+  line-height: 1.75;
+}
+
+
+.reference-list li{
+  margin-bottom: 14px;
+  color: #111827;
+  font-size: 16px;
+}
+
+
+.reference-list i{
+  font-style: italic;
+  color: #1f2937;
+}
+
+
+.reference-list li{
+  scroll-margin-top: 90px; 
+}
+
+.dataset-item{
+  margin-left: 0;       
+  padding-left: 0;
+  line-height: 1.6;
+}
+
+
+.dataset-item .btn-link{
+  display: inline-block;
+  margin-left: 24px;     
+  margin-top: 4px;
+}
+
+
+</style>
+
+</style>
+
+   
+</head>
+
+<body id="_index">
+
+<nav class="site-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-link" href="index.html"><strong>Home</strong></a>
+    <a class="nav-link" href="#idates"><strong>Important Dates</strong></a>
+        <a class="nav-link" href="#registration"><strong>Registration</strong></a>
+
+    <a class="nav-link" href="#tasks"><strong>Tasks</strong></a>
+    <a class="nav-link" href="#organizers"><strong>Organizers</strong></a>
+  </div>
+</nav>
+
+<header class="hero-clean">
+  <div class="hero-clean__inner">
+    <div class="hero-clean__text">
+      <h1 class="hero-clean__kicker">
+        Medical Generative Video Question Answering
+      </h1>
+      <h1 class="hero-clean__title">
+        MedGenVidQA 2026
+      </h1>
+    </div>
+  </div>
+</header>
+
+
+
+
+<main>
+  <section class="section-intro">
+  <h2>Introduction</h2>
+
+  <div class="intro-content">
+    <p>
+      The recent surge in the availability of online videos has changed the way of acquiring information and knowledge. Many people prefer instructional videos to teach or learn how to accomplish a particular task in an effective and efficient manner with a series of step-by-step procedures. This need is not only limited to general audiences. In professional settings such as healthcare, instructional videos are widely used by physicians and other professional to learn, review, and standardize procedural workflows. In addition, consumer increasingly seek step-by-step visual explanations to better understand medical procedures and clinical practices. With the advancement of generative models, the medical domain has also seen progress in medical video understanding, clinical decsion support etc,. Toward this, the MedGenVidQA shared task focuses on developing systems that utilize generative models to retrieve relevant multimodal (textual and visual) sources and to localize visual answers within medical videos in response to consumer and healthcare professional medical queries. Additionally, resource creation in the medical domain is both costly and time-consuming, as it often requires the involvement of medical experts. In this context, we also aim to assess the capability of generative models to create question–answer pairs from medical videos. Following earlier editions of medical question answering tasks:
+      <a href="https://medvidqa.github.io/index-2023.html">MedVidQA 2023</a>,
+      <a href="https://medvidqa.github.io">MedVidQA 2024</a>,
+      <a href="https://dmice.ohsu.edu/trec-biogen/">BioGen 2024</a>, and
+      <a href="https://trec-biogen.github.io/docs/">BioGen 2025</a>, this shared task expands medical video question answering for both professionals and consumers, with a focus on generative approaches to solving these tasks.
+    </p>
+  </div>
+</section>
+
+<section id="news" class="section-news">
+  <h2>News</h2>
+
+  <ul class="news-list">
+    <li>January 16, 2026: Training and Validation datasets released.</li>
+    <li>January 16, 2026: Introducing the MedGenVidQA 2026 challenge.</li>
+  </ul>
+</section>
+
+<section id="idates" class="section-dates">
+  <h2>Important Dates</h2>
+
+  <div class="dates-card">
+    <div class="tg-wrap" role="region" aria-label="Important Dates Table">
+      <table id="tg-ErTjd" class="tg">
+        <thead>
+          <tr>
+            <th class="tg-1wig"></th>
+            <th class="tg-7btt">Corpus<br>Release</th>
+            <th class="tg-7btt">Training/Val Set<br>Release</th>
+            <th class="tg-7btt">Test Set <br>Release</th>
+            <th class="tg-amwm">Submission<br>Deadline</th>
+            <th class="tg-amwm">Official<br>Results</th>
+                        <th class="tg-amwm">Paper Submission<br>Deadline</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-1wig">Task A</td>
+            <td class="tg-c3ow">January 30</td>
+            <td class="tg-c3ow">January 16</td>
+            <td class="tg-c3ow">February 16</td>
+            <td class="tg-c3ow">March 15</td>
+            <td class="tg-baqh">April 10</td>
+                        <td class="tg-baqh">April 24</td>
+
+          </tr>
+          <tr>
+            <td class="tg-1wig">Task B</td>
+            <td class="tg-c3ow">January 30</td>
+            <td class="tg-c3ow">January 16</td>
+            <td class="tg-c3ow">February 16</td>
+            <td class="tg-c3ow">March 31</td>
+                 <td class="tg-baqh">April 10</td>
+                        <td class="tg-baqh">April 24</td>
+          </tr>
+          <tr>
+            <td class="tg-1wig">Task C</td>
+            <td class="tg-c3ow">January 30</td>
+            <td class="tg-c3ow">January 16</td>
+            <td class="tg-c3ow">February 16</td>
+            <td class="tg-c3ow">March 31</td>
+                     <td class="tg-baqh">April 10</td>
+                        <td class="tg-baqh">April 24</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="dates-note">
+      Join our <a href="https://groups.google.com/g/medgenvidqa2026">Google Group</a> for important updates! If you have any questions, ask in our
+      <a href="https://groups.google.com/g/medgenvidqa2026">Google Group</a> or <a href="mailto:deepak.gupta@nih.gov">email</a> us.
+    </p>
+  </div>
+</section>
+
+
+
+<section id="registration" class="section-registration">
+  <h2>Registration and Submission</h2>
+
+  <div class="info-card">
+    <ul class="info-list">
+      <li>Registration and Submission will be done via CodaBench (Link will be added soon)</li>
+      <li>Participants should submit system outputs through the corresponding CodaBench competition for each subtask. Teams may participate in any subset of the subtasks.</li>
+      <li>Each team is allowed up to ten successful submissions per subtask on CodaBench.</li>
+      <li>Teams should designate their best-performing submission for each subtask by pushing it to the leaderboard.</li>
+    </ul>
+  </div>
+
+  <h2>Paper Submission</h2>
+
+  <div class="info-card">
+    <ul class="info-list">
+      <li>All shared task participants are invited to submit a paper describing their systems to the Proceedings of the <a href="https://aclweb.org/aclwiki/BioNLP_Workshop">BioNLP 2026</a> at <a href="https://2026.aclweb.org/">ACL 2026</a>.</li>
+      <li>Paper must follow the submission instructions of the <a href="https://aclweb.org/aclwiki/BioNLP_Workshop">BioNLP 2026</a> workshop.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="tasks" class="section-tasks">
+  <h2>Tasks</h2>
+
+
+  <div class="task-tabs">
+    
+    <input type="radio" name="task-tab" id="tab-a" checked>
+    <input type="radio" name="task-tab" id="tab-b">
+    <input type="radio" name="task-tab" id="tab-c">
+
+ 
+    <div class="task-tab-labels">
+      <label for="tab-a">Task A: MMR</label>
+      <label for="tab-b">Task B: VAL</label>
+      <label for="tab-c">Task C: QAG</label>
+    </div>
+
+
+    <div class="task-tab-panels">
+
+  
+      <div class="task-panel">
+        <h3>Task A: Multimodal Retrieval (MMR)</h3>
+        <p>
+          Given a medical query and a collection of multimodal sources (textual and video), the task aims to retrieve the relevant video and PubMed articles from the video and PubMed collection which contain the answer to the medical query.
+        </p>
+
+        <h4>Datasets</h4>
+<p><h5>Training and Validation Datasets:</h5>
+<p>
+    <strong>MedVidQA</strong> collections <a href="#ref1">[1]</a> consisting of 3,010 human-annotated instructional questions and visual answers from 900 health-related videos.
+    <a class="btn-link" href="https://osf.io/pc594/files/osfstorage">Download Dataset</a>
+<br>
+    <strong>MedAESQA</strong> collections <a href="#ref1">[2]</a> consisting of 8,427 human annotated PubMed documents against the answer to the consumer health questions.
+    <a class="btn-link" href="https://osf.io/ydbzq/files/osfstorage">Download Dataset</a>
+
+</p>
+</p>
+        <h5>Test Dataset:</h5>
+        <p>Will be released via CodaBench.</p>
+
+        <h4>Evaluations</h4>
+        <p>
+          We will evalaute the performance of the video and text retrieval system in terms of Mean Average Precision (MAP), Recall@k, Precision@k, and nDCG metrics with k={5, 10}. We will follow the
+          <a href="https://github.com/usnistgov/trec_eval">trec_eval</a> evaluation library.
+        </p>
+
+        <h4>Run Submission</h4>
+        <p>CodaBench (TBA)</p>
+      </div>
+
+      <!-- Task B -->
+      <div class="task-panel">
+        <h3>Task B: Visual Answer Localization (VAL)</h3>
+        <p>
+          Given a medical query and a video, the task aims to locate the temporal segments (start and end timestamps) in the video where the answer to the medical query is being shown, or the explanation is illustrated in the video.
+        </p>
+
+        <h4>Datasets</h4>
+
+
+<p><h5>Training and Validation Datasets:</h5>
+<p>
+    <strong>MedVidQA</strong> collections <a href="#ref1">[1]</a> consisting of 3,010 human-annotated instructional questions and visual answers from 900 health-related videos.
+    <a class="btn-link" href="https://osf.io/pc594/files/osfstorage">Download Dataset</a>
+<br>
+   <strong>HealthVidQA</strong>  collections <a href="#ref1">[3]</a> consisting of 76K automatically generated instructional questions and visual answers from 16K health-related videos.<br>
+          <a class="btn-link" href="https://bionlp.nlm.nih.gov/HealthVidQA.zip">Download Datasets</a>
+
+</p>
+</p>
+
+
+
+    
+        <h5>Test Dataset:</h5>
+        <p>Will be released via CodaBench.</p>
+
+        <h4>Evaluations</h4>
+        <p>
+ Following MedVidQA<a href="#ref1">[1]</a>, we will use Mean Intersection over Union (mIoU) and IoU =0.3, IoU=0.5 and IoU=0.7 as the evaluation metrics.        </p>
+
+        <h4>Run Submission</h4>
+        <p>CodaBench (TBA)</p>
+      </div>
+
+  
+      <div class="task-panel">
+        <h3>Task C: Question-Answer Generation (QAG)</h3>
+        <p>
+          Given a medical video, the task aims to generate all instructional questions and corresponding visual answer in terms of start and end timestamps in the video.
+        </p>
+
+        <h4>Datasets</h4>
+        </strong> 
+
+
+        <p><h5>Training and Validation Datasets:</h5>
+<p>
+    
+   <strong>HealthVidQA</strong>  collections <a href="#ref1">[3]</a> consisting of 76K automatically generated instructional questions and visual answers from 16K health-related videos.<br>
+          <a class="btn-link" href="https://bionlp.nlm.nih.gov/HealthVidQA.zip">Download Datasets</a>
+
+</p>
+</p>
+
+        <h5>Test Dataset:</h5>
+        <p>Will be released via CodaBench.</p>
+
+        <h4>Evaluations</h4>
+        <p>TBA</p>
+
+        <h4>Run Submission</h4>
+        <p>CodaBench (TBA)</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section id="organizers" class="section-organizers">
+  <h2>Organizers</h2>
+
+  <div class="organizers-grid">
+    <a class="organizer-card" href="https://deepaknlp.github.io/">
+      <img class="headshot" src="img/organizers/deepak.jpeg" alt="Deepak Gupta">
+      <span class="name">Deepak Gupta</span>
+      <span class="affiliation">NLM, NIH</span>
+    </a>
+
+    <a class="organizer-card" href="https://www.nlm.nih.gov/research/researchstaff/DemnerFushmanDina.html">
+      <img class="headshot" src="img/organizers/DinaDemnerFushman.jpg" alt="Dina Demner-Fushman">
+      <span class="name">Dina Demner-Fushman</span>
+      <span class="affiliation">NLM, NIH</span>
+    </a>
+  </div>
+</section>
+
+
+<section id="references" class="section-references">
+  <h2>References</h2>
+
+  <ol class="reference-list">
+    <li id="ref1">
+      <i>Deepak Gupta, Kush Attal, and Dina Demner-Fushman. A Dataset for Medical Instructional Video Classification and Question Answering, <em>Sci Data</em> 10, 158 (2023).</i>
+    </li>
+
+    <li id="ref2">
+      <i>Deepak Gupta, Davis Bartels, and Dina Demner-Fushman. A Dataset of Medical Questions Paired with automatically Generated answers and Evidence-supported References. <em>Sci Data</em>, 12.1 (2025): 1035.</i>
+    </li>
+
+    <li id="ref3">
+      <i>Deepak Gupta, Kush Attal, and Dina Demner-Fushman. Towards answering health-related questions from medical videos: Datasets and approaches. In <em>Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)</em>, pages 16399-16411, 2024.</i>
+    </li>
+
+ 
+  </ol>
+</section>
+
+
+
+</main>
+
+<footer>
+
+</footer>
+
+</body>
+</html>
