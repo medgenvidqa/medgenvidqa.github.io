@@ -461,65 +461,77 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
 .task-tabs{
   margin-top: 26px;
   max-width: 1090px;
+  position: relative;
 }
 
-
+/* hide radio buttons */
 .task-tabs input{
   display: none;
 }
 
-
+/* tab labels container */
 .task-tab-labels{
   display: flex;
   gap: 6px;
-  border-bottom: 2px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+  z-index: 2;
 }
 
+/* default tab */
 .task-tab-labels label{
-  padding: 12px 18px;
+  padding: 12px 20px;
   cursor: pointer;
   font-weight: 800;
   border-radius: 12px 12px 0 0;
   color: #374151;
-  background: #f8fafc;
+  background: #f1f5f9;
+  border: 1px solid transparent;
+  border-bottom: none;
+  transition: all 0.2s ease;
 }
 
+/* hover */
 .task-tab-labels label:hover{
-  background: #eef2f7;
+  background: #e2e8f0;
 }
 
-
+/* active tab */
 #tab-a:checked ~ .task-tab-labels label[for="tab-a"],
 #tab-b:checked ~ .task-tab-labels label[for="tab-b"],
 #tab-c:checked ~ .task-tab-labels label[for="tab-c"]{
   background: #ffffff;
   color: #0f172a;
   border: 1px solid #e5e7eb;
-  border-bottom: none;
+  border-bottom: 1px solid #ffffff;
+  position: relative;
+  z-index: 3;
 }
 
-
+/* panel container */
 .task-tab-panels{
   background: #ffffff;
   border: 1px solid #e5e7eb;
-  border-top: none;
-  border-radius: 0 0 16px 16px;
-  padding: 22px;
+  border-radius: 0 12px 12px 12px;
+  padding: 26px;
+  position: relative;
+  top: -1px;
 }
 
-
+/* hide panels by default */
 .task-panel{
   display: none;
+  animation: fadeIn 0.25s ease;
 }
 
-
+/* show active panel */
 #tab-a:checked ~ .task-tab-panels .task-panel:nth-child(1),
 #tab-b:checked ~ .task-tab-panels .task-panel:nth-child(2),
 #tab-c:checked ~ .task-tab-panels .task-panel:nth-child(3){
   display: block;
 }
 
-
+/* typography */
 .task-panel h3{
   margin-top: 0;
   font-size: 30px;
@@ -540,7 +552,21 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
 
 .task-panel p{
   line-height: 1.75;
+  color: #374151;
 }
+
+/* smooth fade */
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 
 .btn-link{
@@ -716,6 +742,8 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
   <h2>News</h2>
 
   <ul class="news-list">
+            <li>Februray 16, 2026: CodaBench Submission Open.</li>
+        <li>Februray 16, 2026: Test dataset released.</li>
     <li>January 30, 2026: Corpus released.</li>
     <li>January 16, 2026: Training and Validation datasets released.</li>
     <li>January 16, 2026: Introducing the MedGenVidQA 2026 challenge.</li>
@@ -723,7 +751,7 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
 </section>
 
 <section id="idates" class="section-dates">
-  <h2>Important Dates</h2>
+  <h2>Important Dates (Tentative)</h2>
 
   <div class="dates-card">
     <div class="tg-wrap" role="region" aria-label="Important Dates Table">
@@ -747,8 +775,8 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
             <td class="tg-c3ow">January 16</td>
             <td class="tg-c3ow">February 16</td>
             <td class="tg-c3ow">March 15</td>
-            <td class="tg-baqh">April 10</td>
-                        <td class="tg-baqh">April 24</td>
+            <td class="tg-baqh">April 20</td>
+                        <td class="tg-baqh">April 30</td>
 
           </tr>
           <tr>
@@ -757,8 +785,8 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
             <td class="tg-c3ow">January 16</td>
             <td class="tg-c3ow">February 16</td>
             <td class="tg-c3ow">March 31</td>
-                 <td class="tg-baqh">April 10</td>
-                        <td class="tg-baqh">April 24</td>
+                 <td class="tg-baqh">April 20</td>
+                        <td class="tg-baqh">April 30</td>
           </tr>
           <tr>
             <td class="tg-1wig">Task C</td>
@@ -766,8 +794,8 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
             <td class="tg-c3ow">January 16</td>
             <td class="tg-c3ow">February 16</td>
             <td class="tg-c3ow">March 31</td>
-                     <td class="tg-baqh">April 10</td>
-                        <td class="tg-baqh">April 24</td>
+                     <td class="tg-baqh">April 20</td>
+                        <td class="tg-baqh">April 30</td>
           </tr>
         </tbody>
       </table>
@@ -787,7 +815,7 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
 
   <div class="info-card">
     <ul class="info-list">
-      <li>Registration and Submission will be done via CodaBench (Link will be added soon)</li>
+      <li>Registration and Submission will be done via CodaBench</li>
       <li>Participants should submit system outputs through the corresponding CodaBench competition for each subtask. Teams may participate in any subset of the subtasks.</li>
       <li>Each team is allowed up to ten successful submissions per subtask on CodaBench.</li>
       <li>Teams should designate their best-performing submission for each subtask by pushing it to the leaderboard.</li>
@@ -807,44 +835,37 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
 <section id="tasks" class="section-tasks">
   <h2>Tasks</h2>
 
-
-  <div class="task-tabs">
-    
+  <div class="task-tabs">    
     <input type="radio" name="task-tab" id="tab-a" checked>
     <input type="radio" name="task-tab" id="tab-b">
     <input type="radio" name="task-tab" id="tab-c">
 
- 
+
     <div class="task-tab-labels">
       <label for="tab-a">Task A: MMR</label>
-      <label for="tab-b">Task B: VAL</label>
-      <label for="tab-c">Task C: QAG</label>
+      <label for="tab-b">Task B: MAG</label>
+      <label for="tab-c">Task C: VAL</label>
     </div>
 
 
     <div class="task-tab-panels">
-
   
       <div class="task-panel">
         <h3>Task A: Multimodal Retrieval (MMR)</h3>
         <p>
           Given a medical query and a collection of multimodal sources (textual and video), the task aims to retrieve the relevant video and PubMed articles from the video and PubMed collection which contain the answer to the medical query.
         </p>
-
         <h4>Datasets</h4>
-
-
 <p><h5>Corpus:</h5>
 <p>
     <strong>PubMed</strong> 2026 baseline: consisting of latest released PubMed articles.
-    <a class="btn-link" href="https://bionlp.nlm.nih.gov/pubmed_corpus_2025.jsonl">Download Textual Corpus</a>
+    <a class="btn-link" href="https://bionlp.nlm.nih.gov/pubmed_corpus_2025.jsonl">Download PubMed Corpus</a>
 <br>
   
-
 </p>
 
 <p>
-    <strong>Video Corpus: consisting of collection of professional and consumer-friendly videos.
+    <strong>Video Corpus: consisting of collection of professional and consumer-friendly videos.</strong>
     <a class="btn-link" href="https://drive.google.com/drive/folders/1EHJoQOIhsLkeYdoQYdTNHYAJJIgpBge8?usp=sharing">Download Video Corpus</a>
 <br>
   
@@ -863,21 +884,80 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
 </p>
 </p>
         <h5>Test Dataset:</h5>
-        <p>Will be released via CodaBench.</p>
+<p>Can be downloaded from <a href="https://www.codabench.org/competitions/13989/">CodaBench</a>.</p>
 
         <h4>Evaluations</h4>
         <p>
           We will evalaute the performance of the video and text retrieval system in terms of Mean Average Precision (MAP), Recall@k, Precision@k, and nDCG metrics with k={5, 10}. We will follow the
           <a href="https://github.com/usnistgov/trec_eval">trec_eval</a> evaluation library.
         </p>
-
         <h4>Run Submission</h4>
-        <p>CodaBench (TBA)</p>
+        <p>CodaBench <a href="https://www.codabench.org/competitions/13989/">https://www.codabench.org/competitions/13989/</a></p>
       </div>
 
       <!-- Task B -->
-      <div class="task-panel">
-        <h3>Task B: Visual Answer Localization (VAL)</h3>
+     
+ <div class="task-panel">
+        <h3>Task B: Multimodal Answer Generation (MAG)</h3>
+        <p>
+          Given a medical query and a collection of multimodal sources (text and video), the task aims to generate an answer that includes attributions (cited references from the PubMed, YouTube Video, or OpenIVideo corpora) for each answer sentence. <br>
+Participants can consider any of the sources (PubMed, YouTubeVideo, or OpenIVideo corpora) to support the answer sentence generated by their models.
+
+        </p>
+
+        <p>
+          
+          The generated answer must meet the following requirements:
+  <ul>
+  <li>The total length of the generated answer should be within 250 words.</li>
+  <li>There should be no more than three PMID and/or videos sources per answer sentence.</li>
+  <li>The PMIDs must be selected only from the valid set of PubMed corpus released with the dataset.</li>
+    <li>The video sources must be selected only from the valid set of Video Corpus released with the dataset.</li>
+
+</ul>
+
+        </p>
+
+        <p><h5>Corpus:</h5>
+<p>
+    <strong>PubMed</strong> 2026 baseline: consisting of latest released PubMed articles.
+    <a class="btn-link" href="https://bionlp.nlm.nih.gov/pubmed_corpus_2025.jsonl">Download PubMed Corpus</a>
+<br>
+  
+</p>
+
+<p>
+    <strong>Video Corpus: consisting of collection of professional and consumer-friendly videos.</strong>
+    <a class="btn-link" href="https://drive.google.com/drive/folders/1EHJoQOIhsLkeYdoQYdTNHYAJJIgpBge8?usp=sharing">Download Video Corpus</a>
+<br>
+  
+
+</p>
+</p>
+
+<p><h5>Training and Validation Datasets:</h5>
+<p>
+    
+    <strong>MedAESQA</strong> collections <a href="#ref1">[2]</a> consisting of 8,427 human annotated PubMed documents against the answer to the consumer health questions.
+    <a class="btn-link" href="https://osf.io/ydbzq/files/osfstorage">Download Dataset</a>
+
+</p>
+</p>
+
+        <h5>Test Dataset:</h5>
+<p>Can be downloaded from <a href="https://www.codabench.org/competitions/14014/">CodaBench</a>.</p>
+        <h4>Evaluations</h4>
+        <p>
+ Following MedVidQA<a href="#ref1">[1]</a>, we will use Mean Intersection over Union (mIoU) and IoU =0.3, IoU=0.5 and IoU=0.7 as the evaluation metrics.        
+</p>
+
+        <h4>Run Submission</h4>
+                <p>CodaBench <a href="https://www.codabench.org/competitions/14014/">https://www.codabench.org/competitions/14014/</a></p>
+
+      </div>
+  
+       <div class="task-panel">
+        <h3>Task C: Visual Answer Localization (VAL)</h3>
         <p>
           Given a medical query and a video, the task aims to locate the temporal segments (start and end timestamps) in the video where the answer to the medical query is being shown, or the explanation is illustrated in the video.
         </p>
@@ -900,48 +980,19 @@ table.tg thead th:last-child{ border-top-right-radius: 12px; }
 
     
         <h5>Test Dataset:</h5>
-        <p>Will be released via CodaBench.</p>
+        <p>Can be downloaded from <a href="https://www.codabench.org/competitions/14015/">CodaBench</a>.</p>
 
         <h4>Evaluations</h4>
         <p>
  Following MedVidQA<a href="#ref1">[1]</a>, we will use Mean Intersection over Union (mIoU) and IoU =0.3, IoU=0.5 and IoU=0.7 as the evaluation metrics.        </p>
 
         <h4>Run Submission</h4>
-        <p>CodaBench (TBA)</p>
+                <p>CodaBench <a href="https://www.codabench.org/competitions/14015/">https://www.codabench.org/competitions/14015/</a></p>
+
       </div>
-
-  
-      <div class="task-panel">
-        <h3>Task C: Question-Answer Generation (QAG)</h3>
-        <p>
-          Given a medical video, the task aims to generate all instructional questions and corresponding visual answer in terms of start and end timestamps in the video.
-        </p>
-
-        <h4>Datasets</h4>
-        </strong> 
-
-
-        <p><h5>Training and Validation Datasets:</h5>
-<p>
-    
-   <strong>HealthVidQA</strong>  collections <a href="#ref1">[3]</a> consisting of 76K automatically generated instructional questions and visual answers from 16K health-related videos.<br>
-          <a class="btn-link" href="https://bionlp.nlm.nih.gov/HealthVidQA.zip">Download Datasets</a>
-
-</p>
-</p>
-
-        <h5>Test Dataset:</h5>
-        <p>Will be released via CodaBench.</p>
-
-        <h4>Evaluations</h4>
-        <p>TBA</p>
-
-        <h4>Run Submission</h4>
-        <p>CodaBench (TBA)</p>
-      </div>
-
     </div>
   </div>
+</div>
 </section>
 
 
